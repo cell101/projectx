@@ -11,5 +11,9 @@
   "dependencies": {
     "body-parser": "^1.17.2",
     "express": "^4.15.4"
+  },
+  "devDependencies": {
+    "chromedriver": "^2.33.1",
+    "nightwatch": "^0.9.16"
   }
 }
