@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node app.js",
     "nightwatch": "nightwatch || true",
-    "nw":"nightwatch || true"
+    "nw": "nightwatch || true"
   },
   "author": "",
   "license": "ISC",
@@ -15,7 +15,7 @@
     "express": "^4.15.4"
   },
   "devDependencies": {
-    "chromedriver": "^2.33.1",
+    "chromedriver": "^2.33.2",
     "nightwatch": "^0.9.16"
   }
 }
