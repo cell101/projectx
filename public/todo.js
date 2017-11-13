@@ -1,5 +1,10 @@
 var demoApp = angular.module('demo', []);
 //demoApp.controller('MainController', ['$scope', function($scope){
+//    $scope.list = ['Finish First Push'];
+//   $scope.addItem = function(item){
+//        $scope.list.push(item);
+//    };
+
 demoApp.controller('MainController', ['$scope', '$http', function($scope, $http) {
     // setup a view model 
     var vm = {};

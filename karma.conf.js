@@ -18,6 +18,7 @@ module.exports = function(config) {
       'node_modules/dist/jquery.js',
       'node_modules/angular/angular.js',
       'node_modules/angular-mocks/angular-mocks.js',
+      'public/todo.js',
       'test/unit/**/*.js'
     ],
 
