@@ -58,7 +58,7 @@ router.get('/people', function(req, res) {
  var todos = [
     "Finish First Push",
     "Read 'No Silver Bullet'",
-     "Study Agile methods",
+    "Study Agile methods",
  ];
 
 
