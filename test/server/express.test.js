@@ -30,3 +30,20 @@ describe('loading express', function(){
         });
     });
 });
+
+describe('TODO list',function(){
+    describe('GET /api/todo', function(){
+        it('Should return a list of todo items', function(done){
+            chai.request(app)
+            .get('/api/todo')
+            .end(function(err,res){
+                should.not.exist(err);
+                res.should.have.status(200);
+                res.type.should.equal('application/json');
+                res.body.should.be.a('array');
+                res.body.should.contains('Finish First Push');
+                done();
+            });
+        });
+    });
+});

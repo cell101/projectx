@@ -56,12 +56,16 @@ router.get('/people', function(req, res) {
     { _id: 3, details: "Study Agile methods"},
  ];
 
+ //router.get('/todo', function(req, res) {
+ //    res.send({
+ //        status: 'Items found',
+ //        items: todos
+ //    });
+ //});
+
  router.get('/todo', function(req, res) {
-     res.send({
-         status: 'Items found',
-         items: todos
-     });
- });
+    res.json(['Finish First Push']);
+});
 
  router.post('/todo', function(req, res){
      var newItem = {
