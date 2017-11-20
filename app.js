@@ -50,11 +50,18 @@ router.get('/people', function(req, res) {
 });
 
  // TODO list model
+ //var todos = [
+ //   { _id: 1, details: "Finish First Push"},
+ //   { _id: 2, details: "Read 'No Silver Bullet'"},
+ //   { _id: 3, details: "Study Agile methods"},
+ //];
  var todos = [
-    { _id: 1, details: "Finish First Push"},
-    { _id: 2, details: "Read 'No Silver Bullet'"},
-    { _id: 3, details: "Study Agile methods"},
+    "Finish First Push",
+    "Read 'No Silver Bullet'",
+     "Study Agile methods",
  ];
+
+
 
  //router.get('/todo', function(req, res) {
  //    res.send({
@@ -64,20 +71,28 @@ router.get('/people', function(req, res) {
  //});
 
  router.get('/todo', function(req, res) {
-    res.json(['Finish First Push']);
+    res.json(todos);
 });
 
- router.post('/todo', function(req, res){
-     var newItem = {
-         _id: todos[todos.length-1]._id+1,
-         details: req.body.details
-     };
+// router.post('/todo', function(req, res){
+//     var newItem = {
+//         _id: todos[todos.length-1]._id+1,
+//         details: req.body.details
+//     };
 
-     todos.push(newItem);
-     res.send({
-         status: 'Items added',
-         item: newItem
-     });
+//    todos.push(newItem);
+//     res.send({
+//         status: 'Items added',
+//         item: newItem
+//     });
+// });
+
+ router.post('/todo', function(req, res){
+    todos.push(req.body.newItem);
+    res.json(
+        { status: 'Item added',
+        item: req.body.newItem
+    });
  });
 
  router.delete('/todo/:id', function(req, res){

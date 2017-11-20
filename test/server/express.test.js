@@ -47,3 +47,34 @@ describe('TODO list',function(){
         });
     });
 });
+
+describe('POST /api/todo',function(){
+        it('Should add a new item to the existing list', function(done){
+            chai.request(app)
+            .post('/api/todo')
+            .send({newItem: 'Learn F#'})
+            .end(function(err,res){
+                should.not.exist(err);
+                res.should.have.status(200);
+                res.type.should.equal('application/json');
+                res.body.should.have.property('status').equal('Item added');
+                res.body.should.have.property('item').equal('Learn F#');
+                done();
+            });
+    });
+});
+
+describe('Update after POST',function(){
+    it('Should have a new item after POST', function(done){
+        chai.request(app)
+        .get('/api/todo')
+        .end(function(err, res){
+            should.not.exist(err);
+            res.should.have.status(200);
+            res.type.should.equal('application/json');
+            res.body.should.be.a('array');
+            res.body.should.contains('Learn F#');
+            done();
+        });
+    });
+});
