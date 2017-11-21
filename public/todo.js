@@ -6,7 +6,7 @@ var demoApp = angular.module('demo', []);
 //    };
 
 demoApp.controller('MainController', ['$scope', '$http', function($scope, $http){
-   $scope.list = [];
+   $scope.list = ['Finish First Push'];
    $http.get('/api/todo')
    .then(function(response){
        $scope.list = response.data;
@@ -16,8 +16,7 @@ demoApp.controller('MainController', ['$scope', '$http', function($scope, $http)
        $http.post('/api/todo', {newItem: item})
        .then(function(response){
            $scope.list.push(response.data.item);
-       });
-       
+       });      
    };
 }]);
 

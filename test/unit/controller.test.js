@@ -37,9 +37,3 @@ describe('MainController',function(){
 
 
 });
-
-describe('',function(){
-    it('',function(){
-
-    });
-});
