@@ -92,17 +92,27 @@ router.get('/people', function(req, res) {
     res.json(
         { status: 'Item added',
         item: req.body.newItem
-    });
+        }
+    );
  });
 
- router.delete('/todo/:id', function(req, res){
-    var id = req.params['id'];
-    todos = todos.filter(function(item) {return item._id != id; });
+//  router.delete('/todo/:id', function(req, res){
+//     var id = req.params['id'];
+//     todos = todos.filter(function(item) {return item._id != id; });
+//     res.send({
+//         status: 'Item deleted',
+//         itemId: id
+//     });
+//  });
+router.delete('/todo/:item', function(req, res) {
+    var id = req.params['item'];
+    todos = todos.filter(function (item) { return item != id; });
     res.send({
         status: 'Item deleted',
-        itemId: id
+        item: id
     });
- });
+});
+
 
 
 app.use('/api', router);

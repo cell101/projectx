@@ -14,11 +14,13 @@ module.exports ={
         .useCss()
         .assert.title('TODO list');
 
+        // Add "Add more tests" into a text box
+        // and hit the "Add" button, now the list has "Add more tests"    
         browser
         .waitForElementVisible('input[type=text]',1000)
         .setValue('input[type=text]', 'Add more tests')     
         .waitForElementVisible('button[id=addItem]',1000)
-        //.click('button[id=addItem]')
+        .click('button[id=addItem]')
         .pause(1000)
         .assert.containsText('#lists', 'Add more tests');
 

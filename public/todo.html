@@ -28,12 +28,12 @@
             </div>
            
             <!-- Existing items rows -->
-            <div class="row">
-                <div class="col-sm-4 col-sm-offset-4">
+            <div class="row" id="lists">
+                <div class="col-sm-8">
                     <!-- loop over the todo list -->
-                    <div ng-repeat="item in vm.list track by item._id" style="padding:10px;color:white";>
-                        <button class="btn btn-danger" ng-click="vm.removeItem(item._id)">x</button>
-                        {{item.details}}  
+                    <div ng-repeat="item in list track by $index" style="padding:10px;color:white";>
+                        <button id='removeItem' class="btn btn-danger" ng-click="removeItem(item)">x</button>
+                        {{item}}  
                     </div>
                 </div>
             </div>
@@ -46,10 +46,10 @@
                  </div>
                 <div class="row">
                  <div class="col-sm-8 text-center">
-                      <input type="text" class="form-control" placeholder="Learn Test-driven development" ng-model="vm.newItemDetails">
+                      <input type="text" class="form-control" placeholder="Add more tests" ng-model="newItem">
                  </div>
                  <div class="col-sm-2 text-center">
-                    <button class="btn btn-primary" ng-click="vm.addItem()" ng-disabled="!vm.newItemDetails">Add</button>
+                    <button id='addItem' class="btn btn-primary" ng-click="addItem(newItem)" >Add</button>
                  </div> 
                 </div>
                 </div>
