@@ -4,6 +4,21 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 
+// DB CONNECTION
+var mongoose = require('mongoose');
+//var dbURI = process.env.MONGODB || 'mongodb://your-db-uri';
+var dbURI = process.env.MONGODB || 'mongodb://dbteampxtodo:dbteampxtodo@ds263707.mlab.com:63707/teampxtodo';
+mongoose.connection.on('connected', function(){
+    console.log('Mongoose connected');
+});
+mongoose.connection.on('error', function(err){
+    console.log('Mongoose connection error: ' + err);
+});
+mongoose.connection.on('disconnected', function(){
+    console.log('Mongoose disconnected');
+});
+
+
 // configure app to use bodyParser()
 // this will let us get the data from a POST
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -38,39 +53,71 @@ router.get('/people', function(req, res) {
         {name: 'ko', url: 'assets/postech.jpg'},
         {name: 'lawch', url: 'assets/lawch.png'}, 
         {name: 'dahn', url: 'assets/dhhwang.png'}, 
-          {name: 'yongseok', url: 'assets/Yongseok_Park.jpg'},
-          {name: 'swparkz', url: 'assets/swparkz.png'},
+        {name: 'yongseok', url: 'assets/Yongseok_Park.jpg'},
+        {name: 'swparkz', url: 'assets/swparkz.png'},
         {name: 'gsongsong', url: 'assets/sjeon.jpg'}
     ];
     res.json(people);
 });
 
-var todos = [
+/* var todos = [
     "Finish First Push",
     "Read 'No Silver Bullet'",
     "Study Agile methods",
 ];
+ */
+
+// defeine model
+var todos = mongoose.model('Todo', { item: String });
 
 router.get('/todo', function(req, res) {
-    res.json(todos);
+//    res.json(todos);
+    // use mongoose to get all todo items in the DB
+    todos.find(function(err, all){
+        if (err){
+            res.send(err);
+        }
+        res.json(all);
+    });
 });
 
 router.post('/todo', function(req, res) {
-    todos.push(req.body.newItem);
-    res.json(
-        {
-            status: 'Item added',
-            item: req.body.newItem
+ //   todos.push(req.body.newItem);
+
+// creat a todo item
+    todos.create({item: req.body.newItem}, function(err, data){
+      if (err) {
+          res.send(err);
         }
-    );
+
+    res.json({
+            status: 'Item added',
+            //item: req.body.newItem
+            item :data
+        });
+    });
 });
 
 router.delete('/todo/:item', function(req, res) {
-    var id = req.params['item'];
+/*    var id = req.params['item'];
     todos = todos.filter(function (item) { return item != id; });
     res.send({
         status: 'Item deleted',
         item: id
+    });
+});
+*/
+
+    // remove atodo
+    todos.remove({ _id:req.params['id']}, function(err, data){
+        if (err)
+        {
+            res.send(err);
+        }
+        res.json({
+            status: 'Item deleted',
+            item: data
+        });
     });
 });
 
