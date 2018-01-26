@@ -7,7 +7,8 @@ var bodyParser = require('body-parser');
 // DB CONNECTION
 var mongoose = require('mongoose');
 //var dbURI = process.env.MONGODB || 'mongodb://your-db-uri';
-var dbURI = process.env.MONGODB || 'mongodb://dbteampxtodo:dbteampxtodo@ds263707.mlab.com:63707/teampxtodo';
+var dbURI = process.env.MONGODB || 'mongodb://dbadmin:dbadmin@ds115768.mlab.com:15768/teampxtodo';
+mongoose.connect(dbURI);
 mongoose.connection.on('connected', function(){
     console.log('Mongoose connected');
 });
@@ -98,8 +99,9 @@ router.post('/todo', function(req, res) {
     });
 });
 
+/* 
 router.delete('/todo/:item', function(req, res) {
-/*    var id = req.params['item'];
+    var id = req.params['item'];
     todos = todos.filter(function (item) { return item != id; });
     res.send({
         status: 'Item deleted',
@@ -107,7 +109,7 @@ router.delete('/todo/:item', function(req, res) {
     });
 });
 */
-
+router.delete('/todo/:id', function(req, res) {
     // remove atodo
     todos.remove({ _id:req.params['id']}, function(err, data){
         if (err)

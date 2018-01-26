@@ -15,9 +15,11 @@ demoApp.controller('MainController', ['$scope', '$http', function($scope, $http)
     };
 
     $scope.removeItem = function(item) {
-        $http.delete('/api/todo/' + encodeURIComponent(item))
+//        $http.delete('/api/todo/' + encodeURIComponent(item))
+        $http.delete('/api/todo/' + encodeURIComponent(item._id))
         .then(function(response){
-            $scope.list = $scope.list.filter(function (_item) { return _item != item; });
+//            $scope.list = $scope.list.filter(function (_item) { return _item != item; });
+            $scope.list = $scope.list.filter(function (_item) { return _item._id != item._id; });
         });
     };    
 }]);

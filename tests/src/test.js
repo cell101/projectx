@@ -57,6 +57,7 @@ module.exports = {
 
         // Check the list still has "Add more tests" and "Learn how to use git"
         browser
+        .pause(1000)
         .assert.containsText('#lists', 'Add more tests')
         .assert.containsText('#lists', 'Learn how to use git');
 
@@ -72,6 +73,13 @@ module.exports = {
         .assert.containsText('#lists', 'Learn how to use git')
         .expect.element('#lists').text.to.not.contain('Add more tests');
 
+        // remove "Learn how to use git" and check if "Learn how to use git" is gone
+        browser
+        .useXpath()
+        .waitForElementVisible("//div[@ng-repeat='item in list track by $index' and contains(., 'Learn how to use git')]//button", 1000)
+        .click("//div[@ng-repeat='item in list track by $index' and contains(., 'Learn how to use git')]//button")
+        .useCss()
+        .pause(1000);
         // Remember to call the .end() method when you want to close your test
         browser.end();
     }    
