@@ -6,8 +6,8 @@ var bodyParser = require('body-parser');
 
 // DB CONNECTION
 var mongoose = require('mongoose');
-//var dbURI = process.env.MONGODB || 'mongodb://your-db-uri';
-var dbURI = process.env.MONGODB || 'mongodb://dbadmin:dbadmin@ds115768.mlab.com:15768/teampxtodo';
+var dbURI = process.env.MONGODB || 'mongodb://your-db-uri';
+
 mongoose.connect(dbURI);
 mongoose.connection.on('connected', function(){
     console.log('Mongoose connected');
